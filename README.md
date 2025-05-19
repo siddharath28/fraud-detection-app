@@ -39,9 +39,13 @@ _You can interact with the model by entering transaction feature values to check
 ## 📁 Project Structure
 
 📦 fraud-detection-app/
+
 ├── app.py # Streamlit frontend
+
 ├── fraud_detection_rf_model.pkl # Trained ML model
+
 ├── requirements.txt # Python dependencies
+
 └── README.md # Project documentation
 
 
