@@ -7,7 +7,7 @@ import random
 model = joblib.load("fraud_detection_rf_model.pkl")
 
 st.set_page_config(page_title="Fraud Detection", layout="centered")
-st.image("https://plus.unsplash.com/premium_photo-1663100722417-6e36673fe0ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") 
+st.image("https://plus.unsplash.com/premium_photo-1663100722417-6e36673fe0ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")  # Replace with your banner URL if needed
 st.title("💳 Credit Card Fraud Detection App")
 
 st.markdown("_This app uses a trained machine learning model to predict whether a transaction is fraudulent based on user inputs._")
@@ -21,15 +21,26 @@ st.sidebar.markdown("""
 - Click **Predict** to view the result.
 """)
 
-# Generate input fields with session state-aware defaults
+# Initialize session state defaults
+for i in range(1, 29):
+    if f"V{i}" not in st.session_state:
+        st.session_state[f"V{i}"] = 0.0
+if "amount" not in st.session_state:
+    st.session_state["amount"] = 0.0
+if "time" not in st.session_state:
+    st.session_state["time"] = 0.0
+if "is_outlier" not in st.session_state:
+    st.session_state["is_outlier"] = 0
+
+# Generate input fields
 v_inputs = []
 for i in range(1, 29):
-    val = st.number_input(f"V{i}", key=f"V{i}", value=st.session_state.get(f"V{i}", 0.0), format="%.6f")
+    val = st.number_input(f"V{i}", key=f"V{i}", value=st.session_state[f"V{i}"], format="%.6f")
     v_inputs.append(val)
 
-scaled_amount = st.number_input("Scaled Amount", key="amount", value=st.session_state.get("amount", 0.0), format="%.6f")
-scaled_time = st.number_input("Scaled Time", key="time", value=st.session_state.get("time", 0.0), format="%.6f")
-is_outlier = st.selectbox("Is Outlier", options=[0, 1], index=st.session_state.get("is_outlier", 0), key="is_outlier")
+scaled_amount = st.number_input("Scaled Amount", key="amount", value=st.session_state["amount"], format="%.6f")
+scaled_time = st.number_input("Scaled Time", key="time", value=st.session_state["time"], format="%.6f")
+is_outlier = st.selectbox("Is Outlier", options=[0, 1], index=st.session_state["is_outlier"], key="is_outlier")
 
 # Example loader with rerun
 if st.button("🔁 Load Example"):
