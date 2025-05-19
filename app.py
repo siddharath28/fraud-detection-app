@@ -7,7 +7,7 @@ import random
 model = joblib.load("fraud_detection_rf_model.pkl")
 
 st.set_page_config(page_title="Fraud Detection", layout="centered")
-st.image("https://www.alamy.com/credit-card-security-banner-concept-of-protection-online-payments-and-money-from-fraud-and-mobile-scam-vector-landing-page-with-isometric-banking-cards-shield-and-padlock-image368461429.html")  # Replace with your banner URL if needed
+st.image("https://plus.unsplash.com/premium_photo-1663100722417-6e36673fe0ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")  # Replace with your banner URL if needed
 st.title("💳 Credit Card Fraud Detection App")
 
 st.markdown("_This app uses a trained machine learning model to predict whether a transaction is fraudulent based on user inputs._")
